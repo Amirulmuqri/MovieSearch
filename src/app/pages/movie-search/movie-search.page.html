@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Movie Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="searchMovies()"></ion-searchbar>
+</ion-content>
+
+<ion-content>
+  <ion-list *ngIf="movies.length > 0">
+  <ion-item *ngFor="let movie of movies" (click)="viewDetails(movie.imdbID)">
+    <ion-thumbnail slot="staiot">
+      <img [src]="movie.Poster" />
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{ movie.Title }}</h2>
+      <p>{{ movie.Year }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-label *ngIf="movies.length === 0 && searchQuery">
+  No movies found.
+</ion-label>
+</ion-content>
